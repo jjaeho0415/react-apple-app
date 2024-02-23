@@ -63,8 +63,6 @@ const Row = ({ title, id, fetchUrl }) => {
         navigation
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log("slide change")}
       >
         <div id={id} className="row__posters">
           {movies.map((movie) => (

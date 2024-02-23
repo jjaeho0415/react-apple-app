@@ -59,7 +59,6 @@ const Nav = () => {
   const handleAuth = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        console.log(result);
         setUserData(result.user);
         localStorage.setItem("userData", JSON.stringify(result.user));
       })
