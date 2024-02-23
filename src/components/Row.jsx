@@ -36,38 +36,54 @@ const Row = ({ title, id, fetchUrl }) => {
 
   return (
     <Container>
-      <div>
-        <h2>{title}</h2>
-        <Swiper
-          // install Swiper modules
-          modules={[Navigation, Pagination, Scrollbar, A11y]}
-          spaceBetween={50}
-          slidesPerView={3}
-          navigation
-          pagination={{ clickable: true }}
-          scrollbar={{ draggable: true }}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
-        >
-          <div id={id} className="row__posters">
-            {movies.map((movie) => (
-              <SwiperSlide key={movie.id}>
-                <Wrap>
-                  <img
-                    className="row__poster"
-                    src={`${imageBasePath}${movie.backdrop_path}`}
-                    alt={movie.name}
-                    onClick={() => handleClick(movie)}
-                  />
-                </Wrap>
-              </SwiperSlide>
-            ))}
-          </div>
-        </Swiper>
-        {modalOpen ? (
-          <MovieModal {...movieSelected} setModalOpen={setModalOpen} />
-        ) : null}
-      </div>
+      <h2>{title}</h2>
+      <Swiper
+        // install Swiper modules
+        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        breakpoints={{
+          1378: {
+            slidesPerView: 6, // 한번에 보이는 슬라이드 갯수
+            slidesPerGroup: 6, // 몇개씩 슬라이드 할지
+          },
+          998: {
+            slidesPerView: 5,
+            slidesPerGroup: 5,
+          },
+          625: {
+            slidesPerView: 4,
+            slidesPerGroup: 4,
+          },
+          0: {
+            slidesPerView: 3,
+            slidesPerGroup: 3,
+          },
+        }}
+        // spaceBetween={50}
+        // slidesPerView={3}
+        navigation
+        pagination={{ clickable: true }}
+        scrollbar={{ draggable: true }}
+        onSwiper={(swiper) => console.log(swiper)}
+        onSlideChange={() => console.log("slide change")}
+      >
+        <div id={id} className="row__posters">
+          {movies.map((movie) => (
+            <SwiperSlide key={movie.id}>
+              <Wrap>
+                <img
+                  className="row__poster"
+                  src={`${imageBasePath}${movie.backdrop_path}`}
+                  alt={movie.name}
+                  onClick={() => handleClick(movie)}
+                />
+              </Wrap>
+            </SwiperSlide>
+          ))}
+        </div>
+      </Swiper>
+      {modalOpen ? (
+        <MovieModal {...movieSelected} setModalOpen={setModalOpen} />
+      ) : null}
     </Container>
   );
 };
