@@ -4,12 +4,8 @@ import { useCallback, useState, useEffect } from "react";
 import { styled } from "styled-components";
 import MovieModal from "./MovieModal";
 import { imageBasePath } from "../constant";
-// import Swiper core and required modules
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
-
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -38,7 +34,6 @@ const Row = ({ title, id, fetchUrl }) => {
     <Container>
       <h2>{title}</h2>
       <Swiper
-        // install Swiper modules
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         breakpoints={{
           1378: {
@@ -58,8 +53,6 @@ const Row = ({ title, id, fetchUrl }) => {
             slidesPerGroup: 3,
           },
         }}
-        // spaceBetween={50}
-        // slidesPerView={3}
         navigation
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
